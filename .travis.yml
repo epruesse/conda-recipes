@@ -1,0 +1,11 @@
+os:
+  - linux
+  - osx
+language: c
+sudo: required
+services:
+  - docker
+install: scripts/travis-setup.sh
+script: travis_wait 60 scripts/travis-run.sh
+
+
