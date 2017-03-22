@@ -30,6 +30,7 @@ requirements:
     - xorg-libxi
     - xorg-libxaw
     - xorg-libxpm
+    - xorg-makedepend
     - xerces-c
     - libtiff
     - libxslt
