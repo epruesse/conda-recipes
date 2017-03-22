@@ -2,6 +2,12 @@
 set -x
 set -e
 
-conda-build-all recipes
+export PATH=/anaconda/bin:$PATH
 
-anaconda -t $CONDA_UPLOAD_TOKEN upload -u epruesse 
+conda-build-all recipes \
+		--inspect-channels epruesse \
+		--upload-channels epruesse \
+		--no-inspect-conda-bld-directory
+
+
+#anaconda -t $CONDA_UPLOAD_TOKEN upload -u epruesse 
