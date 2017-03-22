@@ -5,7 +5,7 @@ set -e
 export PATH=/anaconda/bin:$PATH
 
 # patch resolve.py to work around a bug
-patch /anaconda/lib/python3.6/site-packages/conda/resolve.py <scripts/resolve.patch || true
+#patch /anaconda/lib/python3.6/site-packages/conda/resolve.py <scripts/resolve.patch || true
 
 conda-build-all recipes \
 		--inspect-channels epruesse \

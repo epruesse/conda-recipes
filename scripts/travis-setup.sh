@@ -24,7 +24,7 @@ done
 
 PACKAGES="
 anaconda-client
-conda
+conda=4.2.13
 conda-build
 conda-build-all
 libtool
