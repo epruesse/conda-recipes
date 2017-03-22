@@ -1,11 +1,13 @@
 os:
-  - linux
-  - osx
+- linux
+- osx
 language: c
 sudo: required
 services:
-  - docker
+- docker
 install: scripts/travis-setup.sh
 script: travis_wait 60 scripts/travis-run.sh
-
-
+env:
+  global:
+    # BINSTAR_API_TOKEN=<secret>
+    secure: zk0chwC3+9YTGrtjsO+uNT6qqJ3n2+OypDv4iTvAO1kCp6nMv8IomVDN7JYQ0ZdAelecRkJSQUZIMou9k/liMvuZw96l7LTdFFXaFVhM7W6OP4eJMrV1w1B9Fa7CSYJTxC9EwXwwBRPWFoCodEVrt58jhWkJlZT5CJWUrTH39deEFce8AcxULC0Rzx9CSbCRe6CPLFUzZb9rVFBKKJNN3kEBJvh4R6EcaGqdn4SRtD1wI85TKBTPgZT73ebahx8EhpGBEDquA2Tnh6ODNfVEwhlTMaSnW4PfMvlDZQlNjGMltKd3QIluTPcv8qQa12GOyA66vB/yUFqqdWHHCPDSLhL2q77LXOoHZvy8QgYlVeNOtxJCGqCLdzYbHAK/aFTC2lKFmclYoH02lDGtAIhbU5RqdFPvrWSfWRbhJDT14/agNWgcEFrnMfS98f3Mrknnd9yKwL6nqnN21z6whVQb5jPcVuJ8gXXHTUW7gJzAlaI2/CT6ymv0vwtpvvBamx3wrSKLmw3EIoaJqZqV+Uex/Ap/xrczJ2SfXhImhDux7tguvCEyuJ4f7whNz2O3W3awkhf8UbqxvqzsaONcx2SxePhwHePVkeh9Kn9DEegluo+aaWZ1AGJkYh8WhKIsJ747UTHNLcYW/8vqPayw+Hw9SuM59yRfDm3ujybILUjP5Is=
