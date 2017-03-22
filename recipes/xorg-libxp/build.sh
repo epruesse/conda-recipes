@@ -34,6 +34,13 @@ if [ -n "$VS_MAJOR" ] ; then
     autoreconf "${autoreconf_args[@]}"
 fi
 
+# debug lib dependencies
+for n in $PREFIX/lib/*.so; do
+    echo $n
+    ldd $n
+    echo ----
+done
+
 export PKG_CONFIG_LIBDIR=$uprefix/lib/pkgconfig:$uprefix/share/pkgconfig
 configure_args=(
     --prefix=$mprefix

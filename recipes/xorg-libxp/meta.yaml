@@ -30,11 +30,13 @@ requirements:
     - xorg-xextproto
     - xorg-printproto
     - xorg-libxau
+    - xorg-libxdmcp
 
   run:
     - xorg-libx11 1.6.*
     - xorg-libxext
     - xorg-libxau
+    - xorg-libxdmcp
 
 test:
   commands:
