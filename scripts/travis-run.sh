@@ -2,6 +2,6 @@
 set -x
 set -e
 
-conda build recipes
+conda-build-all recipes
 
 anaconda -t $CONDA_UPLOAD_TOKEN upload -u epruesse 

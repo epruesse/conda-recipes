@@ -26,9 +26,10 @@ PACKAGES="
 anaconda-client
 conda
 conda-build
+conda-build-all
 "
 
-conda install $PACKAGES
+conda install -y $PACKAGES
 
 conda index /anaconda/conda-bld/linux-64 /anaconda/conda-bld/osx-64
 conda config --add channels file://anaconda/conda-bld
