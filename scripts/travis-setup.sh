@@ -2,15 +2,18 @@
 set -x 
 set -e
 
-# Install "lynx". ARB build will fail without it.
-sudo apt-get install lynx
 
 case $TRAVIS_OS_NAME in
   linux)
-    osname=Linux
-  ;;
+      osname=Linux
+      # Install "lynx". ARB build will fail without it.
+      sudo apt-get install lynx
+      ;;
   *)
-    osname=MacOSX
+      osname=MacOSX
+      # Install "lynx". ARB build will fail without it.
+      sudo brew install lynx
+      ;;
 esac
 
 curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-$osname-x86_64.sh
