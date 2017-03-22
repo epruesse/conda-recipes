@@ -28,12 +28,14 @@ requirements:
     - xorg-util-macros
     - xorg-libpthread-stubs
     - xorg-libxrender 0.9.*
+    - xorg-libxau
     - freetype
     - fontconfig
 
   run:
     - xorg-libx11 1.6.*
     - xorg-libxrender 0.9.*
+    - xorg-libxau
     - freetype
     - fontconfig
 

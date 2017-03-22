@@ -42,7 +42,7 @@ configure_args=(
     --disable-silent-rules
 )
 
-./configure "${configure_args[@]}"
+./configure "${configure_args[@]}" || (cat config.log; false)
 make -j$CPU_COUNT
 make install
 make check
