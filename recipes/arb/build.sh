@@ -3,6 +3,7 @@ set -e
 
 export ARBHOME=`pwd`
 export PATH=$ARBHOME/bin:$PATH
+export LD_LIBRARY_PATH=$ARBHOME/lib
 
 export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 export XLIBS=$(shell pkg-config --libs xpm xerces-c)
