@@ -29,6 +29,7 @@ requirements:
     - xorg-libpthread-stubs
     - xorg-libxrender 0.9.*
     - xorg-libxau
+    - xorg-libxdmcp
     - freetype
     - fontconfig
 
@@ -36,6 +37,7 @@ requirements:
     - xorg-libx11 1.6.*
     - xorg-libxrender 0.9.*
     - xorg-libxau
+    - xorg-libxdmcp
     - freetype
     - fontconfig
 
