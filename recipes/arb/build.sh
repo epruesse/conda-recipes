@@ -15,8 +15,6 @@ export XINCLUDES=$(shell pkg-config --cflags x11)
 # conda packages:
 export ARB_BUILD_SKIP_PKGS="MAFFT MUSCLE RAXML PHYLIP FASTTREE"
 
-sed -i 's/gsed/sed/' SH/arb_sed
-
 if [ -z "$DIRTY" ]; then
 
     make || true
