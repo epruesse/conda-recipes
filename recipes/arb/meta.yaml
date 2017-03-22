@@ -1,0 +1,63 @@
+{% set name = "ARB" %}
+{% set version = "6.0.6" %}
+{% set sha256 = "8b1fc3fd11bbb05aca4731ac8803c004a4f2b6b87c11b543660d07ea349a6c21" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{name | lower }}-{{ version }}-source.tgz
+  url: http://download.arb-home.de/release/{{ name|lower }}-{{ version }}/{{ name|lower }}-{{ version }}-source.tgz
+  sha256: {{ sha256 }}
+  patches:
+   - disable_pkgs.patch
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - gcc  # [not osx]
+    - llvm  # [osx]
+    - pkg-config
+    - openmotif
+    - glib
+    - gettext
+    - xorg-libxp
+    - xorg-libxmu
+    - xorg-libxi
+    - xorg-libxaw
+    - xorg-libxpm
+    - xerces-c
+    - libtiff
+    - libxslt
+
+  run:
+    - libgcc  # [not osx]
+    - xorg-libxi
+    - xorg-libxmu
+    - xorg-libxp
+    - xorg-libxaw
+    - xorg-libxpm
+    - glib
+    - openmotif
+    - gnuplot
+    - xtermcolor
+    - muscle
+    - mafft
+    - raxml
+    - phylip
+    - fasttree
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: http://www.arb-home.de
+  license: ARB
+  licence_file: arb_LICENSE.txt
+  summary: ARB 6 Sequence Analysis Suite
