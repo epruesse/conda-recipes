@@ -27,6 +27,7 @@ anaconda-client
 conda
 conda-build
 conda-build-all
+libtool
 "
 
 conda install -y $PACKAGES
