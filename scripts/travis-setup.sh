@@ -2,6 +2,9 @@
 set -x 
 set -e
 
+# Install "lynx". ARB build will fail without it.
+sudo apt-get install lynx
+
 case $TRAVIS_OS_NAME in
   linux)
     osname=Linux
