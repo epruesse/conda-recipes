@@ -36,7 +36,7 @@ fi
 make_args="LIBPATH=-Wl,-rpath,$PREFIX/lib -L$ARBHOME/lib"
 no_mafftlinks="MAFFTLINKS="
 
-make "$make_args" $no_mafftlinks -j$CPU_COUNT build
+make "$make_args" $no_mafftlinks -j$CPU_COUNT build >/dev/null 2>&1
 make "$make_args" $no_mafftlinks -j1 build
 make "$make_args" $no_mafftlinks tarfile_quick
 
