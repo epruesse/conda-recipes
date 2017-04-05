@@ -11,7 +11,14 @@ source:
   url: http://download.arb-home.de/release/{{ name|lower }}-{{ version }}/{{ name|lower }}-{{ version }}-source.tgz
   sha256: {{ sha256 }}
   patches:
+   # allow disabling build of bundled tools
    - disable_pkgs.patch
+   # do not create links for mafft
+   - no_mafftlinks.patch
+   # allow linking with missing symbols on macos
+   - link_dyn.patch
+   - make.patch
+   - fixlink.patch
 
 build:
   number: 0
@@ -25,6 +32,7 @@ requirements:
     - openmotif
     - glib
     - gettext
+    - pthread-stubs
     - xorg-libxp
     - xorg-libxmu
     - xorg-libxi
