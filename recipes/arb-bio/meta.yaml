@@ -18,7 +18,6 @@ source:
    # allow linking with missing symbols on macos
    - link_dyn.patch
    - make.patch
-   - fixlink.patch
 
 build:
   number: 1
