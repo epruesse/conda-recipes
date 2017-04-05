@@ -11,18 +11,9 @@ source:
   url: https://downloads.sourceforge.net/project/motif/Motif%20{{ version }}%20Source%20Code/motif-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    # Removes a flag clang doesn't recognise/accept as valid
-    # From https://trac.macports.org/browser/trunk/dports/x11/openmotif/files/patch-configure.ac.diff
-    - patch-configure.ac.diff
-
     # "Only weak aliases are supported on darwin"
     # From https://raw.githubusercontent.com/Homebrew/formula-patches/b10858b/openmotif/patch-lib-XmP.h.diff
     - patch-lib-XmP.h.diff
-
-    # Fix VendorShell reference for XQuartz 2.7.9+
-    # see github.com/Homebrew/homebrew-x11/pull/265
-    #    - patch-lib-VendorS.c.diff
-
 
 build:
   number: 0
