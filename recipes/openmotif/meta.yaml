@@ -21,7 +21,7 @@ source:
 
     # Fix VendorShell reference for XQuartz 2.7.9+
     # see github.com/Homebrew/homebrew-x11/pull/265
-    - patch-lib-VendorS.c.diff
+    #    - patch-lib-VendorS.c.diff
 
 
 build:
