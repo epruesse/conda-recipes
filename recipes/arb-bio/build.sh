@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set +x
 
 export ARBHOME=`pwd`
 export PATH=$ARBHOME/bin:$PATH
@@ -34,14 +34,17 @@ case `uname` in
 	echo LINK_STATIC := 0
 	SHARED_LIB_SUFFIX=dylib
 	LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+	CFLAGS="$CLFLAGS -w"
 	;;
 esac >> config.makefile
 
+echo "PREFIX=$PREFIX"
+
 # make
-make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX -j$CPU_COUNT build
+make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX -j$CPU_COUNT build | sed 's|'$PREFIX'|$PREFIX|g'
 
 # make install
-make  SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX  tarfile_quick
+make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX tarfile_quick  | sed 's|'$PREFIX'|$PREFIX|g'
 
 ARB_INST=$PREFIX/lib/arb
 mkdir $ARB_INST
