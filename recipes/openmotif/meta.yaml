@@ -1,6 +1,6 @@
 {% set name = "openmotif" %}
-{% set version = "2.3.6" %}
-{% set sha256 = "fa810e6bedeca0f5a2eb8216f42129bcf6bd23919068d433e386b7bfc05d58cf" %}
+{% set version = "2.3.7" %}
+{% set sha256 = "8f7aadbb0f42df2093d4690735a2b9a02ea2bf69dfb15ae0a39cae28f1580d14" %}
 
 package:
   name: {{ name|lower }}
@@ -11,12 +11,18 @@ source:
   url: https://downloads.sourceforge.net/project/motif/Motif%20{{ version }}%20Source%20Code/motif-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
+    # Removes a flag clang doesn't recognise/accept as valid
+    # From https://trac.macports.org/browser/trunk/dports/x11/openmotif/files/patch-configure.ac.diff
+    - patch-configure.ac.diff
+
     # "Only weak aliases are supported on darwin"
     # From https://raw.githubusercontent.com/Homebrew/formula-patches/b10858b/openmotif/patch-lib-XmP.h.diff
     - patch-lib-XmP.h.diff
-    # "fatal error: 'malloc.h' file not found"
-    # From  "https://raw.githubusercontent.com/Homebrew/formula-patches/b10858b/openmotif/patch-demos-xrmLib.c.diff"
-    - patch-demos-xrmLib.c.diff
+
+    # Fix VendorShell reference for XQuartz 2.7.9+
+    # see github.com/Homebrew/homebrew-x11/pull/265
+    - patch-lib-VendorS.c.diff
+
 
 build:
   number: 0
@@ -29,7 +35,7 @@ requirements:
     - freetype
     - fontconfig
     - libpng
-    - jpeg
+    - jpeg 9*
     - xorg-libxt
     - xorg-libxext
     - xorg-libxft
@@ -38,6 +44,8 @@ requirements:
     - xorg-libxmu
     - xorg-makedepend
     - libiconv
+    - pthread-stubs
+    - xorg-printproto
     
   run:
     - freetype

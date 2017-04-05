@@ -12,11 +12,11 @@ esac
 ./configure --prefix=$PREFIX \
             --disable-dependency-tracking \
             --disable-silent-rules \
+	    --x-includes=$PREFIX/include \
+	    --x-libraries=$PREFIX/include \
 	    --enable-jpeg \
 	    --enable-png \
 	    --enable-xft
-
-
 
 make -j${CPU_COUNT}
 make install
