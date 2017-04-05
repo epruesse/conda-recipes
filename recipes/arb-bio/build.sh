@@ -41,10 +41,10 @@ esac >> config.makefile
 echo "PREFIX=$PREFIX"
 
 # make
-make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX -j$CPU_COUNT build | arb_sed 's|'$PREFIX'|$PREFIX|g'
+make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX -j$CPU_COUNT build | sed 's|'$PREFIX'|$PREFIX|g'
 
 # make install
-make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX tarfile_quick  | arb_sed 's|'$PREFIX'|$PREFIX|g'
+make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX tarfile_quick  | sed 's|'$PREFIX'|$PREFIX|g'
 
 ARB_INST=$PREFIX/lib/arb
 mkdir $ARB_INST

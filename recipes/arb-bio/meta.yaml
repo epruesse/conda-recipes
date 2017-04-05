@@ -41,6 +41,7 @@ requirements:
     - xerces-c
     - libtiff
     - libxslt
+    - sed
 
   run:
     - libgcc  # [not osx]
@@ -58,6 +59,7 @@ requirements:
     - raxml
     - phylip
     - fasttree
+    - sed
 
 test:
   commands:
