@@ -18,5 +18,7 @@ esac
 	    --enable-png \
 	    --enable-xft
 
-make -j${CPU_COUNT}
+echo "PREFIX=$PREFIX"
+
+make -j${CPU_COUNT} | sed 's|'$PREFIX'|$PREFIX|g'
 make install
