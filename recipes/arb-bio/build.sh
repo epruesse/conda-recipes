@@ -71,11 +71,11 @@ case `uname` in
 	done
 
 	ARB_BINS=`find $ARB_INST -type f -perm -a=x | \
-	    xargs file | grep Mach-O | cut -d : -f 1 `
+	    xargs file -print0 | grep Mach-O | cut -d : -f 1 | grep -v ' '`
 
 	echo "Applying changes to binaries ($ARB_BINS)"
 	for bin in $ARB_BINS; do
-	    install_name_tool $CHANGE_IDS $bin
+	    [ -e "$bin" ] && install_name_tool $CHANGE_IDS "$bin"
 	done
 	;;
 esac
