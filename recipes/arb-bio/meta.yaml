@@ -20,14 +20,13 @@ source:
    - make.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
 
 requirements:
   build:
-    - gcc  # [not osx]
-    - llvm  # [osx]
     - pkg-config
+    - toolchain
     - openmotif
     - glib
     - gettext
@@ -44,7 +43,6 @@ requirements:
     - sed
 
   run:
-    - libgcc  # [not osx]
     - xorg-libxi
     - xorg-libxmu
     - xorg-libxp
