@@ -73,6 +73,7 @@ case `uname` in
 	ARB_BINS=`find $ARB_INST -type f -perm -a=x | \
 	    xargs file | grep Mach-O | cut -d : -f 1 | grep -v ' '`
 
+	echo "changes="$CHANGE_IDS
 	echo "Applying changes to binaries ($ARB_BINS)"
 	for bin in $ARB_BINS; do
 	    [ -e "$bin" ] && install_name_tool $CHANGE_IDS "$bin"
