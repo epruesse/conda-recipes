@@ -13,6 +13,8 @@ case $TRAVIS_OS_NAME in
       osname=MacOSX
       # Install "lynx". ARB build will fail without it.
       brew install lynx gnu-sed gnu-time
+      which sed && rm `which sed`
+      hash -r
       ;;
 esac
 
