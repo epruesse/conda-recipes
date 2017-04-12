@@ -3,6 +3,7 @@ set -x
 set -e
 
 export PATH=/anaconda/bin:$PATH
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # patch resolve.py to work around a bug
 #patch /anaconda/lib/python3.6/site-packages/conda/resolve.py <scripts/resolve.patch || true
