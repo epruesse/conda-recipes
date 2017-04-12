@@ -1,5 +1,6 @@
 #!/bin/bash
-set +x
+
+#### "./configure" ####
 
 export ARBHOME=`pwd`
 export PATH=$ARBHOME/bin:$PATH
@@ -40,19 +41,30 @@ esac >> config.makefile
 
 echo "PREFIX=$PREFIX"
 
-# make
+#### "make" ####
+
 make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX -j$CPU_COUNT build | sed 's|'$PREFIX'|$PREFIX|g'
 
-# make install
+#### "make install" ####
+
+# create tarballs (picks the necessary files out of build tree)
 make SHARED_LIB_SUFFIX=$SHARED_LIB_SUFFIX tarfile_quick  | sed 's|'$PREFIX'|$PREFIX|g'
 
+# unpack tarballs at $PREFIX
 ARB_INST=$PREFIX/lib/arb
 mkdir $ARB_INST
 tar -C $ARB_INST -xzf arb.tgz
 tar -C $ARB_INST -xzf arb-dev.tgz
 
-(cd $PREFIX/bin; ln -s $ARB_INST/bin/arb)
+# symlink arb_* executables into PATH
+(
+ cd $PREFIX/bin;
+ for exe in $ARB_INST/bin/arb_*; do
+     ln -s "$exe"
+ done
+)
 
+# fix the library paths
 case `uname` in
     Darwin)
 	# fix library IDs
@@ -60,23 +72,41 @@ case `uname` in
 	# "ID" of the lib and the path searched for by binaries. We need to
 	# change all these...
 
-	CHANGE_IDS=""
+	CHANGE_IDS=()
 	ARB_LIBS="$ARB_INST"/lib/*.$SHARED_LIB_SUFFIX
 	for lib in $ARB_LIBS; do
 	    old_id=`otool -D "$lib" | tail -n 1`
 	    new_id="@rpath/${lib##$PREFIX/lib/}"
-	    CHANGE_IDS="$CHANGE_IDS -change $old_id $new_id"
+	    CHANGE_IDS+=("-change" "$old_id" "$new_id")
 	    install_name_tool -id "$new_id" "$lib"
 	    echo "Fixing ID of $lib ($old_id => $new_id)"
 	done
+	echo "Collected changes to me made:"
+	echo "${CHANGE_IDS[@]}"
 
 	ARB_BINS=`find $ARB_INST -type f -perm -a=x | \
 	    xargs file | grep Mach-O | cut -d : -f 1 | grep -v ' '`
 
-	echo "changes="$CHANGE_IDS
-	echo "Applying changes to binaries ($ARB_BINS)"
+	echo "Applying changes to binaries:"
 	for bin in $ARB_BINS; do
-	    [ -e "$bin" ] && install_name_tool $CHANGE_IDS "$bin"
+	    if test -e "$bin"; then
+		echo -n "$bin ... "
+		install_name_tool "${CHANGE_IDS[@]}" "$bin"
+		echo "done"
+	    fi
 	done
 	;;
 esac
+
+# Create [de]activate scripts
+# (ARB components expect ARBHOME set to the installation directory)
+
+mkdir -p "${PREFIX}/etc/conda/activate.d"
+cat >"${PREFIX}/etc/conda/activate.d/arbhome-activate.sh" <<EOF
+export ARBHOME_BACKUP="\$ARBHOME"
+export ARBHOME="$PREFIX/lib/arb"
+EOF
+mkdir -p "${PREFIX}/etc/conda/deactivate.d"
+cat >"${PREFIX}/etc/conda/deactivate.d/arbhome-deactivate.sh" <<EOF
+export ARBHOME="\$ARB_HOMEBACKUP"
+EOF

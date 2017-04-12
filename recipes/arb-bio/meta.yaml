@@ -20,7 +20,7 @@ source:
    - make.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
 
 requirements:
@@ -40,7 +40,6 @@ requirements:
     - xerces-c
     - libtiff
     - libxslt
-    - sed
 
   run:
     - xorg-libxi
@@ -56,7 +55,7 @@ requirements:
     - raxml
     - phylip
     - fasttree
-    - sed
+#    - sed
 
 test:
   commands:
