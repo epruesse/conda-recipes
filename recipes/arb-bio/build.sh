@@ -59,7 +59,7 @@ tar -C $ARB_INST -xzf arb-dev.tgz
 # symlink arb_* executables into PATH
 (
  cd $PREFIX/bin;
- for exe in $ARB_INST/bin/arb_*; do
+ for exe in $ARB_INST/bin/arb*; do
      ln -s "$exe"
  done
 )
