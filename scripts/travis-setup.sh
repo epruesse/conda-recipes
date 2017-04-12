@@ -24,7 +24,7 @@ sudo chown -R $USER /anaconda
 export PATH=/anaconda/bin:$PATH
 
 # reversed order (preferred last)
-CHANNELS="epruesse conda-forge defaults r bioconda"
+CHANNELS="defaults r bioconda conda-forge epruesse"
 
 for channel in $CHANNELS; do
     conda config --add channels $channel
