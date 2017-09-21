@@ -1,6 +1,6 @@
 {% set name = "dada2_qiime1" %}
-{% set version = "0.1.1" %}
-{% set sha256 = "23d6e86e9d6caf5d38f58d53c1ca8e9be65decb7f4398b8dc1a3a686ef7d5ba2" %}
+{% set version = "0.1.2" %}
+{% set sha256 = "7ac2863e02da48ca41ee6114321f8d8d90f836d340b637244789dbcf644c3467" %}
 
 package:
   name: {{ name }}
