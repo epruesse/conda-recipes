@@ -20,13 +20,13 @@ requirements:
   build:
     - python
     - qiime
-    - rpy2 =2.8.5
+    - rpy2 2.8.5
     - bioconductor-dada2
     - r-argparser
   run:
     - python
     - qiime
-    - rpy2 =2.8.5
+    - rpy2 2.8.5
     - bioconductor-dada2
     - r-argparser
 
