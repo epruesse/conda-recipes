@@ -1,0 +1,46 @@
+{% set name = "dada2_qiime1" %}
+{% set version = "0.1.1" %}
+{% set sha256 = "23d6e86e9d6caf5d38f58d53c1ca8e9be65decb7f4398b8dc1a3a686ef7d5ba2" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{version}}.tar.gz
+  url: https://github.com/shafferm/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  
+
+requirements:
+  build:
+    - python
+    - qiime
+    - rpy2 =2.8.5
+    - bioconductor-dada2
+    - r-argparser
+  run:
+    - python
+    - qiime
+    - rpy2 =2.8.5
+    - bioconductor-dada2
+    - r-argparser
+
+test:
+  commands:
+    - qiime_dada2.py --help
+
+about:
+  home: https://github.com/shafferm/dada2_qiime1
+  licence: MIT
+  licence_family: MIT
+  licence_file: LICENCE
+  summary: Using DADA2 for to generate necessary files for QIIME 1 analyses.
+  description: |
+    Generating all required files for core_diversity_analyses.py using QIIME 1
+    and DADA2 for denoising.
+
